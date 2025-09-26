@@ -22,6 +22,7 @@ export interface Player {
   totalGeneral: number;
   isPaid: boolean;
   paymentMethod?: 'POS' | 'cash';
+  pendingAmount?: number;
 }
 
 export interface Match {

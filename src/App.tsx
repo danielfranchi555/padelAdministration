@@ -23,6 +23,7 @@ const App: React.FC = () => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [payments, setPayments] = useState<PaymentTransaction[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedPlayerForPayment, setSelectedPlayerForPayment] = useState<string>('');
 
   // Load data from localStorage on component mount
   useEffect(() => {
@@ -69,6 +70,10 @@ const App: React.FC = () => {
     setPayments(prev => [...prev, payment]);
   };
 
+  const handleNavigateToPayments = (playerId: string) => {
+    setSelectedPlayerForPayment(playerId);
+    setActiveTab('payments');
+  };
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'matches', label: 'Partidas', icon: Calendar },
@@ -93,6 +98,7 @@ const App: React.FC = () => {
           <PlayerManagement 
             matches={matches} 
             onUpdateMatch={handleUpdateMatch}
+            onNavigateToPayments={handleNavigateToPayments}
           />
         );
       case 'payments':
@@ -102,6 +108,7 @@ const App: React.FC = () => {
             payments={payments}
             onAddPayment={handleAddPayment}
             onUpdateMatch={handleUpdateMatch}
+            selectedPlayerId={selectedPlayerForPayment}
           />
         );
       case 'reports':

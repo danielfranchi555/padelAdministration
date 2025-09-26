@@ -408,9 +408,9 @@ const PaymentSystem: React.FC<PaymentSystemProps> = ({
                     Método de Pago
                   </label>
                   <div className="grid grid-cols-2 gap-3">
+                    <button
                       onClick={() => {
                         setPaymentMethod('POS');
-                        setShowChangeCalculator(false);
                       }}
                       className={`p-4 rounded-lg border-2 transition-colors ${
                         paymentMethod === 'POS'
@@ -425,9 +425,9 @@ const PaymentSystem: React.FC<PaymentSystemProps> = ({
                       <p className="text-sm text-gray-600">Tarjeta de crédito/débito</p>
                     </button>
 
+                    <button
                       onClick={() => {
                         setPaymentMethod('cash');
-                        setShowChangeCalculator(true);
                       }}
                       className={`p-4 rounded-lg border-2 transition-colors ${
                         paymentMethod === 'cash'

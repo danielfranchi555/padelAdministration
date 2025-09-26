@@ -86,14 +86,14 @@ export const calculatePlayerTotals = (player: Player): Player => {
   };
 };
 
-export const createEmptyPlayer = (): Player => ({
+export const createEmptyPlayer = (courtType?: 'interior' | 'exterior'): Player => ({
   id: generateId(),
   name: '',
   isOwner: false,
   fieldConsumption: {
-    courtShare: 4,
+    courtShare: 0,
     courtAmount: 0,
-    tubeShare: 4,
+    tubeShare: 0,
     tubeAmount: 0,
     overgrip: 0,
   },

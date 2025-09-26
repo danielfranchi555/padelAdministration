@@ -70,12 +70,17 @@ const MatchCreation: React.FC<MatchCreationProps> = ({ matches, onCreateMatch })
       duration: 90,
       players: [
         {
-          ...createEmptyPlayer(),
-          name: responsible.trim()
+          ...createEmptyPlayer(selectedCourtData.type),
+          name: responsible.trim(),
+          fieldConsumption: {
+            ...createEmptyPlayer(selectedCourtData.type).fieldConsumption,
+            courtAmount: 0,
+            tubeAmount: 0
+          }
         },
-        createEmptyPlayer(),
-        createEmptyPlayer(),
-        createEmptyPlayer()
+        createEmptyPlayer(selectedCourtData.type),
+        createEmptyPlayer(selectedCourtData.type),
+        createEmptyPlayer(selectedCourtData.type)
       ],
       isCompleted: false
     };

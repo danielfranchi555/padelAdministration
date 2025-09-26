@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Plus, Trash2, Save, Calculator, ShoppingCart } from 'lucide-react';
+import { Users, Plus, Trash2, Save, Calculator, ShoppingCart, CreditCard } from 'lucide-react';
 import { Match, Player, BarItem } from '../types';
 import { barProducts, courtShareOptions, tubeShareOptions } from '../data';
 import { calculateCourtShare, calculateTubeShare, calculateOwnerCourtPrice, formatCurrency, calculatePlayerTotals, generateId } from '../utils';
@@ -7,9 +7,10 @@ import { calculateCourtShare, calculateTubeShare, calculateOwnerCourtPrice, form
 interface PlayerManagementProps {
   matches: Match[];
   onUpdateMatch: (match: Match) => void;
+  onNavigateToPayments?: (playerId: string) => void;
 }
 
-const PlayerManagement: React.FC<PlayerManagementProps> = ({ matches, onUpdateMatch }) => {
+const PlayerManagement: React.FC<PlayerManagementProps> = ({ matches, onUpdateMatch, onNavigateToPayments }) => {
   const [selectedMatchId, setSelectedMatchId] = useState<string>('');
   const [selectedPlayerId, setSelectedPlayerId] = useState<string>('');
 
@@ -507,6 +508,19 @@ const PlayerManagement: React.FC<PlayerManagementProps> = ({ matches, onUpdateMa
                   )}
                 </div>
               </div>
+
+              {/* Payment Button */}
+              {selectedPlayer.name.trim() && selectedPlayer.totalGeneral > 0 && (
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <button
+                    onClick={() => onNavigateToPayments?.(selectedPlayer.id)}
+                    className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 flex items-center justify-center space-x-2"
+                  >
+                    <CreditCard className="h-5 w-5" />
+                    <span>Ir a Cobros</span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

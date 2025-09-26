@@ -286,6 +286,7 @@ const PaymentSystem: React.FC<PaymentSystemProps> = ({
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <button
+                  <button
                     onClick={() => setPaymentMode('individual')}
                     className={`p-4 rounded-lg border-2 transition-colors ${
                       paymentMode === 'individual'
@@ -300,6 +301,7 @@ const PaymentSystem: React.FC<PaymentSystemProps> = ({
                     <p className="text-sm text-gray-600">Pago por jugador</p>
                   </button>
 
+                  <button
                   <button
                     onClick={() => setPaymentMode('full')}
                     className={`p-4 rounded-lg border-2 transition-colors ${
